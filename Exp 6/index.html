@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Array Operations - Using Methods</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .container {
+        width: 500px;
+        margin: auto;
+        padding: 25px;
+        background-color: white;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+      }
+
+      input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px;
+      }
+
+      button {
+        padding: 10px 15px;
+        margin: 5px;
+        cursor: pointer;
+      }
+
+      #result {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #eee;
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Array Operations</h1>
+
+      <input type="number" id="arrayLength" placeholder="Enter array length" />
+
+      <br />
+
+      <input type="text" id="deleteElement" placeholder="Element to delete" />
+
+      <br />
+
+      <input type="text" id="searchElement" placeholder="Value to search" />
+
+      <br />
+
+      <button onclick="createArray()">Create Array</button>
+
+      <button onclick="performOperations()">Perform Operations</button>
+
+      <button onclick="emptyArray()">Empty Array</button>
+
+      <div id="result">Result will appear here.</div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

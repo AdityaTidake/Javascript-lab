@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Operations</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        text-align: center;
+        margin: 0;
+        padding-top: 50px;
+      }
+
+      .container {
+        width: 400px;
+        margin: auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+      }
+
+      input {
+        padding: 8px;
+        margin: 5px;
+        width: 250px;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      hr {
+        margin: 25px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>String Operations</h2>
+
+      <label>Enter a String:</label>
+      <br />
+      <input type="text" id="inputString" />
+
+      <br /><br />
+
+      <button onclick="reverseString()">Reverse String</button>
+
+      <h3 id="reverseResult"></h3>
+
+      <hr />
+
+      <h3>Replace Characters</h3>
+
+      <label>Characters to Replace:</label>
+      <br />
+      <input type="text" id="oldChar" />
+
+      <br /><br />
+
+      <label>New Characters:</label>
+      <br />
+      <input type="text" id="newChar" />
+
+      <br /><br />
+
+      <button onclick="replaceCharacter()">Replace Characters</button>
+
+      <h3 id="replaceResult"></h3>
+
+      <hr />
+
+      <button onclick="checkPalindrome()">Check Palindrome</button>
+
+      <h3 id="palindromeResult"></h3>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

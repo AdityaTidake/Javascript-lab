@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Countdown Timer</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 80px;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        width: 500px;
+        margin: auto;
+        padding: 30px;
+        background-color: white;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #countdown {
+        margin-top: 25px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      #expired {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Countdown Timer</h1>
+
+      <label>Select End Date and Time:</label>
+
+      <br />
+
+      <input type="datetime-local" id="endDate" />
+
+      <br />
+
+      <button onclick="startCountdown()">Start Countdown</button>
+
+      <div id="countdown"></div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
