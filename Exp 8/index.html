@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Home Page</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: white;
+        text-align: center;
+      }
+
+      /* header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+      } 
+
+      nav {
+        background-color: #ddd;
+        padding: 12px;
+      }
+
+      nav a {
+        margin: 20px;
+        text-decoration: none;
+        color: black;
+      } */
+
+      .container {
+        margin: 40px auto;
+        width: 500px;
+      }
+
+      /* Mouse Over Box */
+      #mouseBox {
+        width: 400px;
+        height: 150px;
+        margin: 20px auto;
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #555;
+      }
+
+      /* Focus Input */
+      #focusBox {
+        width: 300px;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Home Page -->
+    <!-- <header>
+      <h1>My Home Page</h1>
+      <p>Welcome to my website</p>
+    </header>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav> -->
+
+    <div class="container">
+      <!-- Mouse Over Section -->
+      <h2>Mouse Over Event</h2>
+
+      <div id="mouseBox">Move your mouse over this box</div>
+
+      <!-- Focus Section -->
+      <h2>Focus Event</h2>
+
+      <input type="text" id="focusBox" placeholder="Click here to focus" />
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
