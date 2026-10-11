@@ -3,58 +3,318 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>JavaScript Array Objects</title>
+    <title>Array Operations & Objects</title>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        text-align: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f8f9fb;
+        color: #343a40;
+        margin: 0;
+        padding: 30px 16px;
       }
 
       .container {
-        width: 500px;
+        max-width: 550px;
         margin: auto;
+        background: #ffffff;
         padding: 25px;
-        border: 1px solid #aaa;
+        border: 1px solid #e8ebef;
         border-radius: 8px;
       }
 
-      input {
-        padding: 8px;
-        margin: 10px;
+      h2 {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 0 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #343a40;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 14px;
+        color: #414852;
+      }
+
+      .section {
+        margin-bottom: 22px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #edf0f2;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 7px;
+        color: #555d66;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-width: 0;
+        padding: 10px;
+        border: 1px solid #d9dee5;
+        border-radius: 5px;
+        font-size: 14px;
+        background: #ffffff;
+        color: #343a40;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #9bb9e8;
+        box-shadow: 0 0 0 2px #edf3fc;
+      }
+
+      .input-row {
+        display: flex;
+        align-items: end;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .field {
+        flex: 1;
+        min-width: 0;
       }
 
       button {
-        padding: 9px 18px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        padding: 10px 14px;
+        font-size: 13px;
+        font-weight: bold;
         cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
       }
 
-      #result {
-        margin-top: 20px;
-        text-align: left;
-        line-height: 1.8;
+      button:hover {
+        filter: brightness(0.97);
+      }
+
+      button:focus-visible {
+        outline: 2px solid #8ba9d8;
+        outline-offset: 2px;
+      }
+
+      /* Light button colors */
+
+      .btn-create,
+      .btn-reset {
+        background: #e9edf2;
+        color: #46515e;
+        border-color: #dfe4ea;
+      }
+
+      .btn-add {
+        background: #e5edfc;
+        color: #315b9c;
+        border-color: #d6e2f8;
+      }
+
+      .btn-check {
+        background: #e4f3e8;
+        color: #2f7545;
+        border-color: #d2e9d9;
+        width: 100%;
+      }
+
+      .btn-remove {
+        background: #fbe9e8;
+        color: #a94743;
+        border-color: #f3d8d6;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .button-row button {
+        flex: 1;
+      }
+
+      .description {
+        font-size: 13px;
+        color: #737b84;
+        margin: 0 0 12px;
+        line-height: 1.5;
+      }
+
+      .output {
+        margin-top: 24px;
+        padding: 15px;
+        background: #f7f8fa;
+        border: 1px solid #e6e9ed;
+        border-radius: 5px;
+      }
+
+      .output h3 {
+        margin-bottom: 12px;
+      }
+
+      .array-value {
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        color: #315b9c;
+        overflow-wrap: anywhere;
+        margin-top: 5px;
+      }
+
+      .result-label {
+        font-size: 15px;
+        font-weight: 600;
+        margin-top: 16px;
+        margin-bottom: 6px;
+      }
+
+      .result-message {
+        font-size: 15px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+      }
+
+      .success {
+        color: #287542;
+      }
+
+      .error {
+        color: #b54743;
+      }
+
+      .info {
+        color: #315b9c;
+      }
+
+      .btn-reset {
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      @media (max-width: 420px) {
+        .container {
+          padding: 18px;
+        }
+
+        .input-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .input-row button {
+          width: 100%;
+        }
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <h1>JavaScript Arrays</h1>
+      <h2>Concept of Arrays & Objects</h2>
 
-      <label>Enter size of array:</label>
+      <!-- Step 1: Create Array -->
+      <div class="section">
+        <h3>1. Create Array</h3>
 
-      <input type="number" id="arraySize" min="1" placeholder="Enter size" />
+        <div class="input-row">
+          <div class="field">
+            <label for="arraySize">Enter Array Size</label>
+            <input
+              type="number"
+              id="arraySize"
+              min="0"
+              max="1000"
+              placeholder="e.g. 5"
+            />
+          </div>
 
-      <br />
+          <button class="btn-create" onclick="createArray()">
+            Create Array
+          </button>
+        </div>
+      </div>
 
-      <button onclick="createArray()">Create Array</button>
+      <!-- Step 2: Add Elements -->
+      <div class="section">
+        <h3>2. Add Elements</h3>
 
-      <div id="result"></div>
+        <div class="input-row">
+          <div class="field">
+            <label for="inputValue">Enter Value</label>
+            <input type="text" id="inputValue" placeholder="Enter a value" />
+          </div>
+
+          <div class="field">
+            <label for="inputType">Select Type</label>
+            <select id="inputType">
+              <option value="string">String</option>
+              <option value="number">Number</option>
+              <option value="object">Object</option>
+              <option value="array">Array</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn-add" onclick="pushElement()">Push ()</button>
+
+          <button class="btn-add" onclick="unshiftElement()">Unshift ()</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Check Element Type -->
+      <div class="section">
+        <h3>3. Check Element Type</h3>
+
+        <p class="description">
+          Check whether the last added element is an array.
+        </p>
+
+        <button class="btn-check" onclick="checkIsArray()">
+          Check Using Array.isArray()
+        </button>
+      </div>
+
+      <!-- Step 4: Remove Elements -->
+      <div class="section">
+        <h3>4. Remove Elements</h3>
+
+        <div class="button-row">
+          <button class="btn-remove" onclick="popElement()">Pop ()</button>
+
+          <button class="btn-remove" onclick="shiftElement()">Shift ()</button>
+        </div>
+      </div>
+
+      <!-- Output Window -->
+      <div class="output">
+        <h3>Output Window</h3>
+
+        <div>Current Array:</div>
+        <div id="arrayDisplay" class="array-value">[]</div>
+
+        <div class="result-label">Result:</div>
+        <div id="resultMessage" class="result-message info">
+          Create an array to get started.
+        </div>
+      </div>
+
+      <button class="btn-reset" onclick="resetAll()">Reset All</button>
     </div>
 
-    <!-- External JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

@@ -11,22 +11,25 @@
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
         text-align: center;
-        margin-top: 50px;
+        margin-top: 40px;
       }
 
       .container {
         width: 500px;
+        max-width: 90%;
         margin: auto;
         padding: 25px;
         background-color: white;
         border: 1px solid #aaa;
         border-radius: 8px;
+        box-sizing: border-box;
       }
 
       input {
         width: 90%;
         padding: 10px;
         margin: 8px;
+        box-sizing: border-box;
       }
 
       button {
@@ -35,11 +38,40 @@
         cursor: pointer;
       }
 
+      #arrayInputs {
+        margin-top: 15px;
+      }
+
       #result {
         margin-top: 20px;
         padding: 15px;
         background-color: #eee;
         line-height: 1.8;
+        overflow-wrap: anywhere;
+      }
+
+      .error {
+        color: #d93025;
+        font-size: 13px;
+        margin: 0 0 8px;
+        text-align: left;
+        padding-left: 5%;
+      }
+
+      .success {
+        color: #188038;
+      }
+
+      .input-group {
+        margin-bottom: 10px;
+      }
+
+      .input-group input {
+        margin-bottom: 4px;
+      }
+
+      hr {
+        margin: 25px 0;
       }
     </style>
   </head>
@@ -48,24 +80,69 @@
     <div class="container">
       <h1>Array Operations</h1>
 
-      <input type="number" id="arrayLength" placeholder="Enter array length" />
+      <!-- Array size -->
+      <div class="input-group">
+        <label for="arrayLength">Enter Array Size:</label>
 
-      <br />
+        <input
+          type="number"
+          id="arrayLength"
+          min="1"
+          step="1"
+          placeholder="Enter array length"
+        />
 
-      <input type="text" id="deleteElement" placeholder="Element to delete" />
+        <div id="sizeError" class="error"></div>
+      </div>
 
-      <br />
+      <button onclick="generateInputs()">Generate Inputs</button>
 
-      <input type="text" id="searchElement" placeholder="Value to search" />
+      <!-- Dynamic input fields -->
+      <div id="arrayInputs"></div>
 
-      <br />
+      <button id="createButton" onclick="createArray()" hidden>
+        Create Array
+      </button>
 
-      <button onclick="createArray()">Create Array</button>
+      <hr />
 
-      <button onclick="performOperations()">Perform Operations</button>
+      <!-- Delete operation -->
+      <h3>Delete an Element</h3>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="deleteElement"
+          placeholder="Enter element to delete"
+        />
+
+        <div id="deleteError" class="error"></div>
+      </div>
+
+      <button onclick="deleteElement()">Delete Element</button>
+
+      <hr />
+
+      <!-- Search operation -->
+      <h3>Search an Element</h3>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="searchElement"
+          placeholder="Enter element to search"
+        />
+
+        <div id="searchError" class="error"></div>
+      </div>
+
+      <button onclick="searchElement()">Search Element</button>
+
+      <hr />
 
       <button onclick="emptyArray()">Empty Array</button>
 
+      <!-- Output -->
       <div id="result">Result will appear here.</div>
     </div>
 

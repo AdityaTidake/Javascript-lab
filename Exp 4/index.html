@@ -1,49 +1,192 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>String Comparison</title>
 
     <style>
-        body{
-            font-family: Arial;
-            margin: 30px;
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f5f7;
+        padding: 25px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 800px;
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      h2 {
+        text-align: center;
+        margin-top: 0;
+        color: #222;
+      }
+
+      .input-group {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 22px 0;
+      }
+
+      button {
+        padding: 10px 14px;
+        border: 1px solid #cbd2da;
+        border-radius: 5px;
+        background-color: #eef1f5;
+        color: #222;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #dfe5ec;
+      }
+
+      h3 {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .result-card {
+        border: 1px solid #d5d9df;
+        border-radius: 6px;
+        padding: 15px;
+        min-width: 0;
+      }
+
+      .result-card h4 {
+        margin: 0 0 12px;
+        text-align: center;
+      }
+
+      .result {
+        background-color: #f8f9fb;
+        border-radius: 4px;
+        padding: 10px;
+        min-height: 55px;
+        white-space: pre-line;
+        overflow-wrap: anywhere;
+        line-height: 1.5;
+      }
+
+      .note {
+        text-align: center;
+        color: #555;
+        font-size: 13px;
+        margin-top: 20px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
         }
-        input,button{
-            padding: 6px;
-            margin: 5px;
+
+        .results-grid {
+          grid-template-columns: 1fr;
         }
-        #result{
-            margin-top: 20px;
-            border: 1px solid black;
-            padding: 10px;
-            width: 350px;
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
 
-<h2>String Comparison</h2>
+  <body>
+    <div class="container">
+      <h2>String Comparison</h2>
 
-<label>Enter String 1:</label>
-<input type="text" id="string1"><br><br>
+      <div class="input-group">
+        <label for="string1">Enter String 1:</label>
+        <input type="text" id="string1" placeholder="Enter the first string" />
+      </div>
 
-<label>Enter String 2:</label>
-<input type="text" id="string2"><br><br>
+      <div class="input-group">
+        <label for="string2">Enter String 2:</label>
+        <input type="text" id="string2" placeholder="Enter the second string" />
+      </div>
 
-<button onclick="strictEquality()">Strict Equality (===)</button>
-<button onclick="compareLength()">Compare Length</button>
-<button onclick="alphabeticalOrder()">Alphabetical Order</button>
+      <div class="buttons">
+        <button onclick="strictEquality()">Strict Equality</button>
+        <button onclick="compareLength()">Compare Length</button>
+        <button onclick="alphabeticalOrder()">Alphabetical Order</button>
+      </div>
 
+      <h3>Comparison Results</h3>
 
-<h3>Results</h3>
+      <div class="results-grid">
+        <div class="result-card">
+          <h4>Using JavaScript Methods</h4>
+          <div id="equalResult" class="result">
+            Equality result appears here.
+          </div>
+          <br />
+          <div id="lengthResult" class="result">
+            Length result appears here.
+          </div>
+          <br />
+          <div id="alphaResult" class="result">
+            Alphabetical result appears here.
+          </div>
+        </div>
 
-<div id="equalResult"></div><br>
+        <div class="result-card">
+          <h4>Using Regular Expressions</h4>
+          <div id="regexEqualResult" class="result">
+            Equality result appears here.
+          </div>
+          <br />
+          <div id="regexLengthResult" class="result">
+            Length result appears here.
+          </div>
+          <br />
+          <div id="regexAlphaResult" class="result">
+            Alphabetical result appears here.
+          </div>
+        </div>
+      </div>
 
-<div id="lengthResult"></div><br>
+      <p class="note">All comparisons ignore letter case.</p>
+    </div>
 
-<div id="alphaResult"></div>
-
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

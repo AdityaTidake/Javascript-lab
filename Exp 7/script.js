@@ -1,126 +1,181 @@
+
+let myArr = [];
+let lastAddedElement;
+let hasAddedElement = false;
+
+// Display the current array and result message
+function updateOutput(message, type = "info") {
+    document.getElementById("arrayDisplay").textContent =
+        JSON.stringify(myArr);
+
+    const result = document.getElementById("resultMessage");
+    result.textContent = message;
+    result.className = "result-message " + type;
+}
+
+// Step 1: Create an array
 function createArray() {
+    const sizeInput = document.getElementById("arraySize").value;
+    const size = Number(sizeInput);
 
-    // ------------------------------------
-    // Step 1: Accept size from user
-    // ------------------------------------
-
-    let size = parseInt(document.getElementById("arraySize").value);
-
-    if (isNaN(size) || size <= 0) {
-        alert("Please enter a valid positive size.");
+    if (
+        sizeInput.trim() === "" ||
+        !Number.isInteger(size) ||
+        size < 0 ||
+        size > 1000
+    ) {
+        updateOutput(
+            "Enter a valid array size between 0 and 1000.",
+            "error"
+        );
         return;
     }
 
+    myArr = Array.from({ length: size }, (_, i) => i + 1);
 
-    // ------------------------------------
-    // Step 2: Create an array
-    // ------------------------------------
+    hasAddedElement = false;
+    lastAddedElement = undefined;
 
-    let arr = [];
+    updateOutput(`Array created successfully with size ${size}.`, "success");
+}
 
-    // Add elements to the array using push()
-    for (let i = 1; i <= size; i++) {
+// Get the value according to the selected type
+function getInputValue() {
+    const rawValue = document.getElementById("inputValue").value;
+    const type = document.getElementById("inputType").value;
 
-        arr.push("Element " + i);
+    if (rawValue.trim() === "") {
+        updateOutput("Please enter a value before adding an element.", "error");
+        return { valid: false };
     }
 
+    if (type === "number") {
+        const number = Number(rawValue);
 
-    // ------------------------------------
-    // Display original array
-    // ------------------------------------
+        if (!Number.isFinite(number)) {
+            updateOutput("Please enter a valid number.", "error");
+            return { valid: false };
+        }
 
-    let output = "";
+        return { valid: true, value: number };
+    }
 
-    output += "<b>Original Array:</b> ";
-    output += arr.join(", ");
+    if (type === "object") {
+        return {
+            valid: true,
+            value: { value: rawValue }
+        };
+    }
 
+    if (type === "array") {
+        return {
+            valid: true,
+            value: rawValue.split(",").map(item => item.trim())
+        };
+    }
 
-    // ------------------------------------
-    // Step 3: Append an object
-    // ------------------------------------
+    return { valid: true, value: rawValue };
+}
 
-    let student = {
-        name: "Aditya",
-        age: 21,
-        course: "Computer Engineering"
-    };
+// Step 2: Add an element at the end
+function pushElement() {
+    const result = getInputValue();
 
-    // Append object using push()
-    arr.push(student);
+    if (!result.valid) return;
 
+    myArr.push(result.value);
+    lastAddedElement = result.value;
+    hasAddedElement = true;
 
-    output += "<br><br>";
+    updateOutput(
+        `push(): Added ${JSON.stringify(result.value)} at the end.`,
+        "success"
+    );
+}
 
-    output += "<b>Array after appending object:</b><br>";
+// Step 2: Add an element at the beginning
+function unshiftElement() {
+    const result = getInputValue();
 
-    output += "Array = " + JSON.stringify(arr);
+    if (!result.valid) return;
 
+    myArr.unshift(result.value);
+    lastAddedElement = result.value;
+    hasAddedElement = true;
 
-    // ------------------------------------
-    // Step 4: Check whether object is array
-    // ------------------------------------
+    updateOutput(
+        `unshift(): Added ${JSON.stringify(result.value)} at the beginning.`,
+        "success"
+    );
+}
 
-    let objectIsArray = Array.isArray(student);
+// Step 3: Check whether the last added element is an array
+function checkIsArray() {
+    if (!hasAddedElement) {
+        updateOutput(
+            "Please add an element before checking its type.",
+            "error"
+        );
+        return;
+    }
 
-    output += "<br><br>";
+    const isArr = Array.isArray(lastAddedElement);
 
-    output += "<b>Is appended object an array?</b> ";
-    output += objectIsArray;
+    if (isArr) {
+        updateOutput(
+            `Yes! ${JSON.stringify(lastAddedElement)} is an array.`,
+            "success"
+        );
+    } else {
+        updateOutput(
+            `No! ${JSON.stringify(lastAddedElement)} is not an array. Type: ${lastAddedElement === null
+                ? "object"
+                : typeof lastAddedElement
+            }.`,
+            "info"
+        );
+    }
+}
 
+// Step 4: Remove the last element
+function popElement() {
+    if (myArr.length === 0) {
+        updateOutput("Cannot pop: the array is empty.", "error");
+        return;
+    }
 
-    // Check whether the complete array is an array
-    output += "<br>";
+    const removed = myArr.pop();
 
-    output += "<b>Is the main array an array?</b> ";
-    output += Array.isArray(arr);
+    updateOutput(
+        `pop(): Removed ${JSON.stringify(removed)} from the end.`,
+        "success"
+    );
+}
 
+// Step 4: Remove the first element
+function shiftElement() {
+    if (myArr.length === 0) {
+        updateOutput("Cannot shift: the array is empty.", "error");
+        return;
+    }
 
-    // ------------------------------------
-    // Demonstrating unshift()
-    // ------------------------------------
+    const removed = myArr.shift();
 
-    arr.unshift("First Element");
+    updateOutput(
+        `shift(): Removed ${JSON.stringify(removed)} from the beginning.`,
+        "success"
+    );
+}
 
-    output += "<br><br>";
+// Reset the entire application
+function resetAll() {
+    myArr = [];
+    lastAddedElement = undefined;
+    hasAddedElement = false;
 
-    output += "<b>After unshift():</b> ";
-    output += JSON.stringify(arr);
+    document.getElementById("arraySize").value = "";
+    document.getElementById("inputValue").value = "";
+    document.getElementById("inputType").value = "string";
 
-
-    // ------------------------------------
-    // Demonstrating shift()
-    // ------------------------------------
-
-    let removedFirst = arr.shift();
-
-    output += "<br><br>";
-
-    output += "<b>Element removed using shift():</b> ";
-    output += removedFirst;
-
-
-    // ------------------------------------
-    // Demonstrating pop()
-    // ------------------------------------
-
-    let removedLast = arr.pop();
-
-    output += "<br>";
-
-    output += "<b>Element removed using pop():</b> ";
-    output += JSON.stringify(removedLast);
-
-
-    // ------------------------------------
-    // Final array
-    // ------------------------------------
-
-    output += "<br><br>";
-
-    output += "<b>Final Array:</b> ";
-    output += JSON.stringify(arr);
-
-
-    // Display result
-    document.getElementById("result").innerHTML = output;
+    updateOutput("Create an array to get started.", "info");
 }

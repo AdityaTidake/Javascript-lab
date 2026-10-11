@@ -33,10 +33,8 @@ form.addEventListener("submit", function (event) {
 
     let valid = true;
 
-
-    // ------------------------------------------------
+  
     // 1. NAME VALIDATION
-    // ------------------------------------------------
 
     // Name should contain only alphabets and spaces
     let namePattern = /^[A-Za-z ]+$/;
@@ -56,11 +54,8 @@ form.addEventListener("submit", function (event) {
         valid = false;
     }
 
-
-    // ------------------------------------------------
     // 2. ADDRESS VALIDATION
-    // ------------------------------------------------
-
+    
     if (address === "") {
 
         document.getElementById("addressError").innerHTML =
@@ -75,11 +70,8 @@ form.addEventListener("submit", function (event) {
 
         valid = false;
     }
-
-
-    // ------------------------------------------------
+  
     // 3. CITY VALIDATION
-    // ------------------------------------------------
 
     let cityPattern = /^[A-Za-z ]+$/;
 
@@ -98,10 +90,9 @@ form.addEventListener("submit", function (event) {
         valid = false;
     }
 
-
-    // ------------------------------------------------
+   
     // STATE VALIDATION
-    // ------------------------------------------------
+  
 
     if (state === "") {
 
@@ -118,10 +109,8 @@ form.addEventListener("submit", function (event) {
         valid = false;
     }
 
-
-    // ------------------------------------------------
+    
     // 4. GENDER VALIDATION
-    // ------------------------------------------------
 
     if (gender === "") {
 
@@ -130,11 +119,8 @@ form.addEventListener("submit", function (event) {
 
         valid = false;
     }
-
-
-    // ------------------------------------------------
+  
     // 5. MOBILE NUMBER VALIDATION
-    // ------------------------------------------------
 
     // Indian mobile number: starts with 6-9 and contains 10 digits
     let mobilePattern = /^[6-9][0-9]{9}$/;
@@ -154,10 +140,7 @@ form.addEventListener("submit", function (event) {
         valid = false;
     }
 
-
-    // ------------------------------------------------
     // 6. EMAIL VALIDATION
-    // ------------------------------------------------
 
     let emailPattern =
         /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -178,10 +161,8 @@ form.addEventListener("submit", function (event) {
     }
 
 
-    // ------------------------------------------------
     // SUCCESSFUL SUBMISSION
-    // ------------------------------------------------
-
+ 
     if (valid) {
 
         // Optional prompt() as required in the question

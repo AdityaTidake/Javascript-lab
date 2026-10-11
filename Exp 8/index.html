@@ -1,90 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Home Page</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mouse Over and Focus Events</title>
 
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: white;
-        text-align: center;
-      }
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-      /* header {
-        background-color: #333;
-        color: white;
-        padding: 20px;
-      } 
+        /* Main rectangular container */
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 35px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-      nav {
-        background-color: #ddd;
-        padding: 12px;
-      }
+        /* Headings */
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
 
-      nav a {
-        margin: 20px;
-        text-decoration: none;
-        color: black;
-      } */
+        h2 {
+            color: #444;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
 
-      .container {
-        margin: 40px auto;
-        width: 500px;
-      }
+        /* Description */
+        p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-      /* Mouse Over Box */
-      #mouseBox {
-        width: 400px;
-        height: 150px;
-        margin: 20px auto;
-        background-color: lightblue;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #555;
-      }
+        /* Mouse over box */
+        #mouseBox {
+            width: 100%;
+            min-height: 150px;
+            margin: 20px auto;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #4682b4;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 17px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-      /* Focus Input */
-      #focusBox {
-        width: 300px;
-        padding: 12px;
-        font-size: 16px;
-        border: 2px solid #555;
-      }
+        /* Focus input */
+        #focusBox {
+            width: 100%;
+            padding: 13px;
+            font-size: 16px;
+            border: 2px solid #bbb;
+            border-radius: 8px;
+            box-sizing: border-box;
+            outline: none;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #focusBox:focus {
+            border-color: #007bff;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            #mouseBox {
+                min-height: 130px;
+                font-size: 15px;
+            }
+        }
     </style>
-  </head>
+</head>
 
-  <body>
-    <!-- Home Page -->
-    <!-- <header>
-      <h1>My Home Page</h1>
-      <p>Welcome to my website</p>
-    </header>
+<body>
 
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-    </nav> -->
-
+    <!-- Main rectangular card -->
     <div class="container">
-      <!-- Mouse Over Section -->
-      <h2>Mouse Over Event</h2>
 
-      <div id="mouseBox">Move your mouse over this box</div>
+        <h1>JavaScript Events</h1>
 
-      <!-- Focus Section -->
-      <h2>Focus Event</h2>
+        <!-- Mouse Over Section -->
+        <h2>Mouse Over Event</h2>
 
-      <input type="text" id="focusBox" placeholder="Click here to focus" />
+        <p>
+            Move your mouse over the box to change its background color.
+        </p>
+
+        <div id="mouseBox">
+            Move your mouse over this box
+        </div>
+
+        <!-- Focus Section -->
+        <h2>Focus Event</h2>
+
+        <p>
+            Click inside the input field to change its background color.
+        </p>
+
+        <input
+            type="text"
+            id="focusBox"
+            placeholder="Click here to focus"
+        >
+
     </div>
 
     <!-- External JavaScript -->
     <script src="script.js"></script>
-  </body>
+
+</body>
+
 </html>
